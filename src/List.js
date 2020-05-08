@@ -9,7 +9,7 @@ export default class ListPage extends Component {
     }
 
     async componentDidMount() {
-        const allSnakes = await request.get(`https://morning-taiga-48701.herokuapp.com/${this.state.initialSearch}`);
+        const allSnakes = await request.get(`https://morning-taiga-48701.herokuapp.com/api/${this.state.initialSearch}`);
         console.log(allSnakes.body);
 
         this.setState({snakeData: allSnakes.body})
