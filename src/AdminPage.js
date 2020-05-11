@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { addSnake } from './api-calls'
+
+import request from 'superagent';
 export default class AdminPage extends Component {
     state = {
         "species": "",
@@ -16,12 +17,17 @@ export default class AdminPage extends Component {
         this.setState(newState);
     };
 
- 
+
 
     submitHandleChange = async (e) => {
-        e.PreventDefault();
-        const stringedState = JSON.stringify(this.state)
-        const newSnake = await addSnake(stringedState);
+        e.preventDefault();
+        
+        const newSnake = await request.post(`https://morning-taiga-48701.herokuapp.com/api/snakes/`,{
+            species: this.state.species,
+            spicy_factor: this.state.spicy_factor,
+            venomous: this.state.venomous, 
+            care_level: this.state.care_level
+    });
 
 
         this.setState({snakeAdded: newSnake});
