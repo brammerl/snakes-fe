@@ -31,6 +31,7 @@ export default class AdminPage extends Component {
 
 
         this.setState({snakeAdded: newSnake});
+        this.props.history.push('/')
     }
 
 

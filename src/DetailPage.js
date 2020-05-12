@@ -29,6 +29,7 @@ submitHandle = async (e) => {
     })
 
     this.setState(newName);
+    this.props.history.push('/')
 }
 
 deleteHandle = async (e) => {
@@ -37,6 +38,7 @@ deleteHandle = async (e) => {
     const deleted = await request.delete(`https://morning-taiga-48701.herokuapp.com/api/snakes/${this.props.match.params.id}`);
 
     this.setState(deleted);
+    this.props.history.push('/')
 }
     
     render() {
