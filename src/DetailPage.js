@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { getSnake } from './api-calls'
+import request from 'superagent';
 
 
 export default class DetailPage extends Component {
-    state = { snake: null }
+    state = { snake: null,
+        newName: ''
+    }
 componentDidMount = async () => {
 
             console.log(this.props.match.params.id);
@@ -13,9 +16,31 @@ componentDidMount = async () => {
     
             this.setState(fetchedData);
         }
+
+changeName = (e) => {
+    this.setState({ newName: e.target.value })
+}
+
+submitHandle = async (e) => {
+    e.preventDefault(); 
+
+    const newName = await request.put(`https://morning-taiga-48701.herokuapp.com/api/snakes/${this.props.match.params.id}`, {
+        species: this.state.newName
+    })
+
+    this.setState(newName);
+}
+
+deleteHandle = async (e) => {
+    e.preventDefault();
+
+    const deleted = await request.delete(`https://morning-taiga-48701.herokuapp.com/api/snakes/${this.props.match.params.id}`);
+
+    this.setState(deleted);
+}
     
     render() {
-    
+    const {newName} = this.state;
         return <div>
                 <h2>{this.state.species}</h2>
                 <ul>
@@ -29,6 +54,17 @@ componentDidMount = async () => {
                         <p>Care Level : {JSON.stringify(this.state.care_level)}</p>
                     </li>
                 </ul>
+                <section>
+                    <form onSubmit={this.submitHandle}>
+                        <label> Rename Snake
+                            <input value={newName} onChange={this.changeName}/>
+                        </label>
+                        <button>Submit</button>
+                    </form>
+                </section>
+                <section>
+                    <button onClick={this.deleteHandle}>Delete</button>
+                </section>
             </div>
         
 

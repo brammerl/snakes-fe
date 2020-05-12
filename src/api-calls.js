@@ -8,3 +8,4 @@ export const getSnake = async (snakeID) => {
 
     return data.body
 }
+

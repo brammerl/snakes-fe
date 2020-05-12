@@ -6,7 +6,7 @@ export default class AdminPage extends Component {
         "species": "",
         "spicy_factor": 0,
         "venomous": false,
-        "care_level": ""
+        "care_level": 0
     }
 
     generalHandleChange = (e) => {
@@ -26,7 +26,7 @@ export default class AdminPage extends Component {
             species: this.state.species,
             spicy_factor: this.state.spicy_factor,
             venomous: this.state.venomous, 
-            care_level: this.state.care_level
+            care_id: this.state.care_level
     });
 
 
@@ -58,8 +58,8 @@ export default class AdminPage extends Component {
                         Is Not venomous
                         <input type='radio' checked={venomous === 'false'} value='false' name='venomous' onChange={this.generalHandleChange}/>
                     </label>
-                    <label> Care Level
-                        <input value={care_level} name='care_level' onChange={this.generalHandleChange}/>
+                    <label> Care Level (1-3)
+                        <input value={care_level} name='care_level' onChange={this.generalHandleChange} type-/>
                     </label>
                     <button>Submit</button>
                 </form>
