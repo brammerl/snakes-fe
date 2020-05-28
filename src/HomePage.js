@@ -6,13 +6,13 @@ export default class HomePage extends Component {
         return (
             <div>
                 <header>
-                    Snake Directory 
+                    <h1>Snake Directory</h1>
                     <nav>
-                        <Link to='/ListPage'>
-                            <p>All Snakes</p>
+                        <Link to='/'>
+                            <p className='link'>All Snakes</p>
                         </Link>
-                        <Link to='/SnakeNamesPage'>
-                            <p>Snake Names</p>
+                        <Link to='/admin'>
+                            <p className='link'>Enter New Snake</p>
                         </Link>
                     </nav>
                 </header>
